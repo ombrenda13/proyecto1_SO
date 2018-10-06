@@ -7,14 +7,17 @@ public class Proceso{
 	private int prioridad;
 	private int tiempo_es;
 	private int tiempo_llegada;
-
+        int numeroprocesos;
+        Proceso siguiente;
+        
+        
 	public   int getIdproceso(){
 		return id_proceso;
 	
 					}
-	public  void setIdproceso(int id_proceso){
+	public  int setIdproceso(int id_proceso){
 		this.id_proceso=id_proceso;
-            //    return id_proceso;
+                return id_proceso;
 						}
 
         public   String getNombre(){
@@ -59,12 +62,32 @@ public class Proceso{
 						}
         
          public int getTiempolleg(){
-		return tiempo_ejecucion;
+		return tiempo_llegada;
 	
 					}
-	public  void setTiempolleg(int tiempo_llegada){
+	public  int setTiempolleg(int tiempo_llegada){
 		this.tiempo_llegada=tiempo_llegada;
+                return tiempo_llegada;
 						}
+        
+        
+        
+        
+        
+        
+         public void enlazarSig(Proceso n){
+    
+        siguiente=n;
+    
+    }
+    
+    public Proceso  obtenerSig(){
+        return siguiente;
+        
+    }
+        
+        
+        
 
 			}
 		

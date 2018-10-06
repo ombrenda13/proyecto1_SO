@@ -74,7 +74,7 @@ public class Auxiliar {
 						}
         
          public int getTiempolleg(){
-		return tiempo_ejecucion;
+		return tiempo_llegada;
 	
 					}
 	public  void setTiempolleg(int tiempo_llegada){
