@@ -32,17 +32,17 @@ public class mainProyecto {
 
                                                   for (int j=i+1; j<numeroprocesos;j++){
 
-                                                             if(pro[j].getTiempolleg()<pro[i].getTiempolleg()){
+                                                             if(pro[i].getTiempolleg()>pro[j].getTiempolleg()){
                                                                     aux[0]=new Auxiliar();
                                                                     
-                                                                    aux[0].setTiempolleg(pro[i].getTiempolleg());
-                                                                     aux[0].setTamaño(pro[i].getTamaño());
-                                                                     aux[0].setIdproceso(pro[i].getIdproceso());
+                                                                    aux[0].setTiempolleg(pro[j].getTiempolleg());
+                                                                     aux[0].setTamaño(pro[j].getTamaño());
+                                                                     aux[0].setIdproceso(pro[j].getIdproceso());
                                                                      
                                                                      
-                                                                    pro[i].setTiempolleg(pro[j].getTiempolleg());
-                                                                      pro[i].setTamaño(pro[j].getTamaño());
-                                                                      pro[i].setIdproceso(pro[j].getIdproceso());
+                                                                    pro[j].setTiempolleg(pro[i].getTiempolleg());
+                                                                      pro[j].setTamaño(pro[i].getTamaño());
+                                                                      pro[j].setIdproceso(pro[i].getIdproceso());
                                                                       
                                                                       
                                                                     pro[i].setTiempolleg(aux[0].getTiempolleg());
@@ -66,7 +66,7 @@ public class mainProyecto {
           //System.out.println("\nLISTA DE PROCESOS (ordenamiento por tiempo de llegada)");
              //System.out.println("ID PROCESO:"+  pro[a].getIdproceso()+"\tTIEMPO DE LLEGADA:"+pro[a].getTiempolleg()+"[ms]\t"+"TAMAÑO:"+pro[a].getTamaño()+"[MB]\t"+pro[a].getTiempoej()+"[ms]");
             
-             listos.agregar3(pro[a].getIdproceso(),pro[a].getTiempolleg(),pro[a].getTamaño(),pro[a].getTiempoej());
+             listos.agregarFinal(pro[a].getIdproceso(),pro[a].getTiempolleg(),pro[a].getTamaño(),pro[a].getTiempoej());
 		
           }
             System.out.println("LISTA3:");
@@ -86,7 +86,7 @@ public class mainProyecto {
                 
 		}
 		
-                Cpu(ram,memoria,numeroprocesos,cpu);
+              Cpu(ram,memoria,numeroprocesos,cpu);
                 
           }
 
