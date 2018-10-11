@@ -1,13 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author brenda
- */
 
     public class Lista{
 protected Nodo inicio,fin;
@@ -20,7 +10,7 @@ protected Nodo inicio,fin;
 
 	public void agregar(int id,int tiempo,int tamano,int tiempo_ejecucion){
 		inicio=new Nodo(id,tiempo,tamano,inicio,tiempo_ejecucion);
-		if(inicio==null){
+		if(fin==null){
 			fin=inicio;
 		}
 	}
@@ -42,6 +32,26 @@ protected Nodo inicio,fin;
         
 	}
 
+        
+        
+        
+        
+        public void borrarProceso(){
+	//int tem=fin.tamaño;
+	if(inicio==fin){
+		inicio=null;
+		fin=null;
+                
+	}else{
+		Nodo auxiliar=inicio;
+		while(auxiliar.siguiente!=fin){
+			auxiliar=auxiliar.siguiente;
+                       
+		}fin=auxiliar;
+		fin.siguiente=null;
+	}
+	
+	
+	}
 
 }
-

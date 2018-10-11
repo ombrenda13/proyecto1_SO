@@ -6,6 +6,7 @@ public class mainProyecto {
  	public static void main(String args[]){
 				Lista ram= new Lista();//creacion de ram
                                 Lista2 cpu=new Lista2();
+                                Lista3 listos=new Lista3();
 			Scanner num= new Scanner(System.in);
                         Scanner qua=new Scanner(System.in);
   			
@@ -31,17 +32,17 @@ public class mainProyecto {
 
                                                   for (int j=i+1; j<numeroprocesos;j++){
 
-                                                             if(pro[i].getTiempolleg()>pro[j].getTiempolleg()){
+                                                             if(pro[j].getTiempolleg()<pro[i].getTiempolleg()){
                                                                     aux[0]=new Auxiliar();
                                                                     
-                                                                    aux[0].setTiempolleg(pro[j].getTiempolleg());
-                                                                     aux[0].setTamaño(pro[j].getTamaño());
-                                                                     aux[0].setIdproceso(pro[j].getIdproceso());
+                                                                    aux[0].setTiempolleg(pro[i].getTiempolleg());
+                                                                     aux[0].setTamaño(pro[i].getTamaño());
+                                                                     aux[0].setIdproceso(pro[i].getIdproceso());
                                                                      
                                                                      
-                                                                    pro[j].setTiempolleg(pro[i].getTiempolleg());
-                                                                      pro[j].setTamaño(pro[i].getTamaño());
-                                                                      pro[j].setIdproceso(pro[i].getIdproceso());
+                                                                    pro[i].setTiempolleg(pro[j].getTiempolleg());
+                                                                      pro[i].setTamaño(pro[j].getTamaño());
+                                                                      pro[i].setIdproceso(pro[j].getIdproceso());
                                                                       
                                                                       
                                                                     pro[i].setTiempolleg(aux[0].getTiempolleg());
@@ -59,19 +60,24 @@ public class mainProyecto {
         
           
           
-          System.out.println("\nLISTA DE PROCESOS (ordenamiento por tiempo de llegada)");
+          
           
           for(int a=0;a<numeroprocesos;a++){
-          
-              System.out.println("ID PROCESO:"+  pro[a].getIdproceso()+"\tTIEMPO DE LLEGADA:"+pro[a].getTiempolleg()+"[ms]\t"+"TAMAÑO:"+pro[a].getTamaño()+"[MB]");
+          //System.out.println("\nLISTA DE PROCESOS (ordenamiento por tiempo de llegada)");
+             //System.out.println("ID PROCESO:"+  pro[a].getIdproceso()+"\tTIEMPO DE LLEGADA:"+pro[a].getTiempolleg()+"[ms]\t"+"TAMAÑO:"+pro[a].getTamaño()+"[MB]\t"+pro[a].getTiempoej()+"[ms]");
+            
+             listos.agregar3(pro[a].getIdproceso(),pro[a].getTiempolleg(),pro[a].getTamaño(),pro[a].getTiempoej());
 		
           }
-          
+            System.out.println("LISTA3:");
+          listos.mostrarLista3();
 	for(int a=0;a<numeroprocesos;a++){
           
-		memoria=Ram(pro[a].getTamaño(),memoria);
+		memoria=Ram(listos.inicio.tamaño,memoria);
 		if(memoria>0){// comprobando espacio de memoria
-          ram.agregar(pro[a].getIdproceso(),pro[a].getTiempolleg(),pro[a].getTamaño(),pro[a].getTiempoej());//agrego el dato a la ram
+          ram.agregar(listos.inicio.id,listos.inicio.tiempo,listos.inicio.tamaño,listos.inicio.tiempo_ejecucion);//agrego el dato a la ram
+        
+         
           
                                     //eliminar del arreglo de tiempo de llegada
 	System.out.println("\nRAM------ "+memoria+"[MB]\n");
@@ -81,11 +87,11 @@ public class mainProyecto {
 		}
 		
                 Cpu(ram,memoria,numeroprocesos,cpu);
-       
+                
           }
 
 	System.out.println();
-           
+            
                                         
 }
       
@@ -177,10 +183,13 @@ public class mainProyecto {
                             cpu.agregar2(ram.inicio.id,ram.inicio.tiempo,ram.inicio.tamaño,ram.inicio.tiempo_ejecucion);
                            System.out.println("\nCPU------\n");
                            cpu.mostrarLista2();
+                           
+                          ram.borrarProceso();
+                          
+                           System.out.println("SOY LA NUEVA LISTA DE RAM:\n");
+                          ram.mostrarLista();
                     
-                    
-                    
-                
+               
                 
                 
                 }
