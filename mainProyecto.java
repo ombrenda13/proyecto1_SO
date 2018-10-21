@@ -67,7 +67,8 @@ public class mainProyecto {
                              
                             
                             listos.Recorrer(ram,memoria,listos,cpu,quantum);
-                             ram.CorrerProceso(ram,cpu,memoria,quantum,listos);
+                            
+                          //   ram.CorrerProceso(ram,cpu,memoria,quantum,listos);
  
          
                                     

@@ -1,13 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author brenda
- */
 public class Lista3 {
 
     protected Nodo inicio2, fin2;
@@ -59,8 +49,9 @@ public class Lista3 {
     public void Recorrer(Lista ram, int memoria, Lista3 listos, Lista2 cpu, int quantum) {
 
         Nodo recorrer = inicio2;
-
+        
         while (recorrer != null && memoria >= recorrer.tamaño) {
+            if(recorrer.tiempo_ejecucion>0){
                 memoria=memoria-recorrer.tamaño;
           
                 System.out.println("soy la lista de ram y me queda " + memoria +":");
@@ -70,15 +61,16 @@ public class Lista3 {
                 System.out.println("soy la nueva lista de listos:");
                 listos.borrarProceso();
                 listos.mostrarLista3(); 
+               ram.CorrerProceso(ram, cpu, memoria, quantum, listos);
                
-               
-              
-              
-                recorrer = recorrer.siguiente2;
             
-        }
+              
+              //  System.out.println("soy memoria en recorrer:"+ram.SumaMemoria(ram, memoria, recorrer));
+                recorrer = recorrer.siguiente2;
+            }
+              }
         
-     
+           
 //lama al final a correr proceso
     }
 
