@@ -16,14 +16,12 @@ public class Nodo {
 		this.tiempo=tiempo;
 		this.tamaño=tamano;
                 this.tiempo_ejecucion=tiempo_ejecucion;
-		siguiente=n;
+		this.siguiente=null;
                 this.siguiente2=null;
+                this.anterior=null;
 		}
     
-//   public  void setIdproceso(int id_proceso){
-//		this.id_proceso=id_proceso;
-//                this.siguiente=null; //cuando regrese nulo es que no hay otro nodo enlazado 
-//    }
+
    
     
     

@@ -7,22 +7,49 @@ protected Nodo inicio,fin;
 		fin=null;
                 
 	}
-
-	public void agregar(int id,int tiempo,int tamano,int tiempo_ejecucion){
-		inicio=new Nodo(id,tiempo,tamano,inicio,tiempo_ejecucion);
-		if(fin==null){
-			fin=inicio;
-		}
+     
+         public boolean estaVacia(){
+    
+    if(inicio==null){
+        return true;
+    
+    }else {return false;}
+    
+    }
+        
+         public void agregarFinal(int id,int tiempo,int tamano,int tiempo_ejecucion){
+		if(!estaVacia()){
+     
+                    fin.siguiente=new Nodo(id,tiempo,tamano,inicio,tiempo_ejecucion);
+                    fin=fin.siguiente;
+                
+                }else{
+                            inicio=fin=new Nodo(id,tiempo,tamano,inicio,tiempo_ejecucion);
+                
+                }
+                
 	}
-        
-      
-        
-        
-	public void mostrarLista(){
+    
+         public void agregarInicio(int id,int tiempo,int tamano,int tiempo_ejecucion){
+             inicio=new Nodo(id,tiempo,tamano,inicio,tiempo_ejecucion);
+             if(fin==null){
+             
+             fin.anterior=inicio;
+             
+             }
+         }
+         
+	public void mostrarLista(Lista ram, Lista2 cpu, int memoria,int quantum){
 	Nodo recorrer=inicio;
 	while(recorrer!=null){
-		System.out.print("[ID PROCESO:"+recorrer.id+"\tTIEMPO DE LLEGADA:"+recorrer.tiempo+"[ms]\t"+"TAMAÑO:"+recorrer.tamaño+"[MB]"+recorrer.tiempo_ejecucion+"[ms]]--->\n");
-		recorrer=recorrer.siguiente;
+		System.out.print("\t[ID PROCESO:"+recorrer.id+"\tTIEMPO DE LLEGADA:"+recorrer.tiempo+"[ms]\t"+"TAMAÑO:"+recorrer.tamaño+"[MB]"+recorrer.tiempo_ejecucion+"[ms]]--->\n");
+		
+                recorrer=recorrer.siguiente;
+                
+	}
+        
+            
+        
 	}
         
         
@@ -30,28 +57,27 @@ protected Nodo inicio,fin;
         
         
         
-	}
+        
+        public void CorrerProceso(Lista ram, Lista2 cpu, int memoria,int quantum,Lista3 listos){
+        Nodo recorre_ram= inicio;
+        
+                cpu.agregarFinal(recorre_ram.id, recorre_ram.tiempo, recorre_ram.tamaño, recorre_ram.tiempo_ejecucion,memoria,quantum,listos);
+                ram.borrarProceso();
+             //   cpu.agregarFinal(recorrer.id, recorrer.tiempo, recorrer.tamaño, recorrer.tiempo_ejecucion,memoria,quantum);
+                listos.Recorrer(ram, memoria, listos, cpu, quantum);
+        }
 
-        
-        
-        
-        
-        public void borrarProceso(){
+       public Nodo borrarProceso(){
+           Nodo aux = inicio;
 	//int tem=fin.tamaño;
 	if(inicio==fin){
 		inicio=null;
 		fin=null;
-                
 	}else{
-		Nodo auxiliar=inicio;
-		while(auxiliar.siguiente!=fin){
-			auxiliar=auxiliar.siguiente;
-                       
-		}fin=auxiliar;
-		fin.siguiente=null;
+		inicio=inicio.siguiente;
+                
 	}
-	
-	
-	}
-
+       return aux;
+       }
+        
 }

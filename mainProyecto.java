@@ -1,5 +1,5 @@
 
-import java.io.*;
+import java.io.*; 
 import java.util.*;
 public class mainProyecto {
 		
@@ -9,6 +9,8 @@ public class mainProyecto {
                                 Lista3 listos=new Lista3();
 			Scanner num= new Scanner(System.in);
                         Scanner qua=new Scanner(System.in);
+                        int evaluar=0;
+                        
   			
 				System.out.println("ESCRIBE EL NUMERO DE PROCESOS QUE DESEAS SIMULAR:");
 				int numeroprocesos= num.nextInt();
@@ -38,63 +40,38 @@ public class mainProyecto {
                                                                     aux[0].setTiempolleg(pro[j].getTiempolleg());
                                                                      aux[0].setTamaño(pro[j].getTamaño());
                                                                      aux[0].setIdproceso(pro[j].getIdproceso());
+                                                                        aux[0].setTiempoej(pro[j].getTiempoej());     
                                                                      
                                                                      
                                                                     pro[j].setTiempolleg(pro[i].getTiempolleg());
                                                                       pro[j].setTamaño(pro[i].getTamaño());
                                                                       pro[j].setIdproceso(pro[i].getIdproceso());
-                                                                      
+                                                                      pro[j].setTiempoej(pro[i].getTiempoej());
                                                                       
                                                                     pro[i].setTiempolleg(aux[0].getTiempolleg());
                                                                       pro[i].setTamaño(aux[0].getTamaño());
                                                                        pro[i].setIdproceso(aux[0].getIdproceso());
-                                                                       
-                                                                      
+                                                                    pro[i].setTiempoej(aux[0].getTiempoej());
                                                              }
-
 
                                                  }
 
-
                                               }
-        
-          
-          
-          
-          
-          for(int a=0;a<numeroprocesos;a++){
-          //System.out.println("\nLISTA DE PROCESOS (ordenamiento por tiempo de llegada)");
-             //System.out.println("ID PROCESO:"+  pro[a].getIdproceso()+"\tTIEMPO DE LLEGADA:"+pro[a].getTiempolleg()+"[ms]\t"+"TAMAÑO:"+pro[a].getTamaño()+"[MB]\t"+pro[a].getTiempoej()+"[ms]");
-            
-             listos.agregarFinal(pro[a].getIdproceso(),pro[a].getTiempolleg(),pro[a].getTamaño(),pro[a].getTiempoej());
-		
-          }
-            System.out.println("LISTA3:");
-          listos.mostrarLista3();
-	for(int a=0;a<numeroprocesos;a++){
-          
-		memoria=Ram(listos.inicio.tamaño,memoria);
-		if(memoria>0){// comprobando espacio de memoria
-          ram.agregar(listos.inicio.id,listos.inicio.tiempo,listos.inicio.tamaño,listos.inicio.tiempo_ejecucion);//agrego el dato a la ram
-        
+                                              
+                           for(int a=0; a<numeroprocesos;a++){
+                               
+                               listos.agregarFinal(pro[a].getIdproceso(), pro[a].getTiempolleg(),pro[a].getTamaño(),pro[a].getTiempoej());
+                                System.out.println("PROCESOS LISTOS:");
+                                listos.mostrarLista3();
+                               System.out.println("\n");}
+                             
+                            
+                            listos.Recorrer(ram,memoria,listos,cpu,quantum);
+                             ram.CorrerProceso(ram,cpu,memoria,quantum,listos);
+ 
          
-          
-                                    //eliminar del arreglo de tiempo de llegada
-	System.out.println("\nRAM------ "+memoria+"[MB]\n");
-		ram.mostrarLista();
-                
-                
-		}
-		
-              Cpu(ram,memoria,numeroprocesos,cpu);
-                
-          }
-
-	System.out.println();
-            
-                                        
+                                    
 }
-      
         /////////////////METODO DE CAPTURA DE DATOS DE LOS PROCESOS///////////////////////////////////77
         public static void Capturar(int numeroprocesos,Proceso pro[]){
                         
@@ -147,51 +124,8 @@ public class mainProyecto {
                                                         leer.nextLine();
                                         
                                         }
-				
-                      
-        
+	       
         }
-        
-/////////////////////////////////////METODO PARA OBTENER ESPACIO EN  RAM////////////////////////////////
-        
-                public  static int Ram(int tamaño, int memo){
-                        	memo=memo-tamaño;
-                                 
-                               if (memo>0){
-                                       
-                                      return memo;  
-                                        
-                                
-                                }
-                               
-                               else {
-                               
-                                   System.out.println("\nNO HAY ESPACIO DISPONIBLE AUN,ESPERE A QUE SE LIBERE ESPACIO EN MEMORIA\n");
-                               	return 0;
-				}
-                        
-                        
-                        
-                
-                }
-        
-////////////////////////////////METODO PARA INGRESAR A LA LISTA DE CPU///////////////////////////////////
-                public static void Cpu(Lista ram,int memoria,int numeroprocesos,Lista2 cpu){
-                       
-                 
-                   
-                            cpu.agregar2(ram.inicio.id,ram.inicio.tiempo,ram.inicio.tamaño,ram.inicio.tiempo_ejecucion);
-                           System.out.println("\nCPU------\n");
-                           cpu.mostrarLista2();
-                           
-                          ram.borrarProceso();
-                          
-                           System.out.println("SOY LA NUEVA LISTA DE RAM:\n");
-                          ram.mostrarLista();
-                    
-               
-                
-                
-                }
+  
         
 }
