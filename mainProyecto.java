@@ -1,4 +1,3 @@
-
 import java.io.*; 
 import java.util.*;
 public class mainProyecto {
@@ -65,9 +64,9 @@ public class mainProyecto {
                                 listos.mostrarLista3();
                                System.out.println("\n");}
                              
-                            
-                            listos.Recorrer(ram,memoria,listos,cpu,quantum);
-                            
+                         while(Terminar(listos,ram,cpu)==false){   
+                           memoria= listos.Recorrer(ram,memoria,listos,cpu,quantum);}
+                            //listos.Recorrer(ram,memoria,listos,cpu,quantum);
                           //   ram.CorrerProceso(ram,cpu,memoria,quantum,listos);
  
          
@@ -128,5 +127,17 @@ public class mainProyecto {
 	       
         }
   
+        
+        
+        
+        
+        
+       public static boolean Terminar(Lista3 listos, Lista ram, Lista2 cpu){//funcion para terminar el while
+  if(listos.estaVacia()==true && ram.estaVacia()==true && cpu.estaVacia()==true)
+    return true;
+  else
+    return false;
+  }
+        
         
 }

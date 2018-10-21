@@ -16,7 +16,7 @@ public class Lista2 {
     
     }
         
-         public void agregarFinal(Lista ram,int id,int tiempo,int tamano,int tiempo_ejecucion,int memoria,int quantum,Lista3 listos){  
+         public void agregarFinal(Lista ram,int id,int tiempo,int tamano,int tiempo_ejecucion,int memoria,int quantum,Lista3 listos,Lista2 cpu){  
              
 		if(!estaVacia()){
                      System.out.println("soy la lista de cpu:");
@@ -32,7 +32,7 @@ public class Lista2 {
                     }
                      
                      if (fin.siguiente.tiempo_ejecucion==0){
-                       
+                         System.out.println("proceso:"+fin.siguiente.id+"TERMINADO");
                         
                         }     else{
           
@@ -52,12 +52,13 @@ public class Lista2 {
                         inicio.tiempo_ejecucion=inicio.tiempo_ejecucion-1;
                         }               
                     }
-                           
-                           
-                           if (inicio.tiempo_ejecucion==0){
-                      
+                         int aux=inicio.tiempo_ejecucion;
+                           if (aux==0){
+                               System.out.println("PROCESO"+inicio.id +"TERMINADO");
+                              inicio = null;
+                                fin = null;
                         }     else{
-                               
+                               System.out.println("tiempo_restante:"+inicio.tiempo_ejecucion);
                                listos.agregarFinal(inicio.id,inicio.tiempo, inicio.tamaño,inicio.tiempo_ejecucion);}
                          
                            
@@ -66,45 +67,7 @@ public class Lista2 {
                 
                 
                 
-	}
-            
-         
-         
-         
-//      public int Tiempo(int quantum,Nodo inicio,Lista3 listos ){
-//           
-//           for (int a=1; a<=quantum; a++){ 
-//                        
-//                        if(inicio.tiempo_ejecucion>0)
-//                        {
-//                        inicio.tiempo_ejecucion=inicio.tiempo_ejecucion-1;
-//                          
-//                        }
-//                                      
-//                    }
-//          if (inicio.tiempo_ejecucion==0){
-//                        listos.borrarProceso();
-//                        
-//                        }     else{
-//          
-//                               listos.agregarFinal(inicio.id,inicio.tiempo, inicio.tamaño,inicio.tiempo_ejecucion);
-////                               System.out.println("AQUI ALV PTM ESTOY HASTA EL CULO:");
-////                               listos.mostrarLista3();
-//                               
-//                               // System.out.println("LISTOSSSSSS:"+ listos.mostrarLista3());
-//          
-//          }
-//      return inicio.tiempo_ejecucion;
-//      }   
-      
-      
-      
-      
-      
-      
-      
-      
-      
+         }
       public void borrarProceso() {
         //int tem=fin.tamaño;
         if (inicio == fin) {
@@ -121,12 +84,10 @@ public class Lista2 {
      
 	public void mostrarLista2(){
 	Nodo recorrer=inicio;
-	
-		System.out.print("\t[ID PROCESO:"+recorrer.id+"\tTIEMPO DE LLEGADA:"+recorrer.tiempo+"[ms]\t"+"TAMAÑO:"+recorrer.tamaño+"[MB]"+"TIEMPO_EJECUCION"+recorrer.tiempo_ejecucion+"[ms]]--->\n");
-                
-		recorrer=recorrer.siguiente;inicio=recorrer;
-	
+	if(recorrer!=null){
+		System.out.print("\t[----ID PROCESO:"+recorrer.id+"\tTIEMPO DE LLEGADA:"+recorrer.tiempo+"[ms]\t"+"TAMAÑO:"+recorrer.tamaño+"[MB]"+"TIEMPO_EJECUCION"+recorrer.tiempo_ejecucion+"[ms]]--->\n");
+      recorrer=recorrer.siguiente;inicio=recorrer; 
         
+        }   
 	
-
 }}

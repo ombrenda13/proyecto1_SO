@@ -46,7 +46,7 @@ public class Lista3 {
         return recorrer;
     }
 
-    public void Recorrer(Lista ram, int memoria, Lista3 listos, Lista2 cpu, int quantum) {
+    public int Recorrer(Lista ram, int memoria, Lista3 listos, Lista2 cpu, int quantum) {
 
         Nodo recorrer = inicio2;
         
@@ -61,16 +61,20 @@ public class Lista3 {
                 System.out.println("soy la nueva lista de listos:");
                 listos.borrarProceso();
                 listos.mostrarLista3(); 
-               ram.CorrerProceso(ram, cpu, memoria, quantum, listos);
+               
                
             
               
               //  System.out.println("soy memoria en recorrer:"+ram.SumaMemoria(ram, memoria, recorrer));
                 recorrer = recorrer.siguiente2;
             }
+            
+            
               }
+      memoria=  ram.CorrerProceso(ram, cpu, memoria, quantum, listos);
+        System.out.println("memoria liberada"+ memoria);
         
-           
+        return memoria;
 //lama al final a correr proceso
     }
 
@@ -87,5 +91,4 @@ public class Lista3 {
             inicio2 = inicio2.siguiente2;
 
         }
-    }
-}
+    }}

@@ -1,6 +1,4 @@
-
-
-    public class Lista{
+public class Lista{
 protected Nodo inicio,fin;
 
 	public Lista(){
@@ -59,21 +57,23 @@ protected Nodo inicio,fin;
         
         
         
-        public void CorrerProceso(Lista ram, Lista2 cpu, int memoria,int quantum,Lista3 listos){
+        public int CorrerProceso(Lista ram, Lista2 cpu, int memoria,int quantum,Lista3 listos){
         Nodo recorre_ram= inicio;
-        
-                cpu.agregarFinal(ram, recorre_ram.id, recorre_ram.tiempo, recorre_ram.tamaño, recorre_ram.tiempo_ejecucion,memoria,quantum,listos);
+       
+                cpu.agregarFinal(ram, recorre_ram.id, recorre_ram.tiempo, recorre_ram.tamaño, recorre_ram.tiempo_ejecucion,memoria,quantum,listos,cpu);
+               
                 cpu.mostrarLista2();
-                ram.borrarProceso();
                 
-                listos.Recorrer(ram, memoria, listos, cpu, quantum); 
+                ram.borrarProceso();
+               
+             //listos.Recorrer(ram, memoria, listos, cpu, quantum);
               
-              
+              return SumaMemoria(memoria,recorre_ram);
         }
         
-        public int SumaMemoria(Lista ram, int memoria,int tamaño){
+        public int SumaMemoria( int memoria,Nodo recorre_ram){
         //este es un metodo que permite ir sumando la memoria después de que un proceso fue borrado
-              memoria=memoria+tamaño;
+              memoria=memoria+recorre_ram.tamaño;
              
         return memoria;
         }
